@@ -131,7 +131,7 @@ angular.module('starter.services', [])
     return $q(function(resolve, reject){
       $cordovaBarcodeScanner.scan()
       .then(function(barcodeData) {
-        resolve(barcodeData);
+        resolve(angular.fromJson(barcodeData.text));
       }, function(error) {
         reject(error);
       });
