@@ -1,4 +1,11 @@
-angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.services', 'ornito.storage', 'ornito.utils', 'constants', 'ng'])
+angular.module('starter', [
+  'ionic', 
+  'ngCordova', 
+  'starter.controllers', 
+  'starter.services', 
+  'ornito.storage', 
+  'ornito.utils', 
+  'constants'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

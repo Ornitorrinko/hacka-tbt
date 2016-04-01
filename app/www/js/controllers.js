@@ -154,6 +154,7 @@ angular.module('starter.controllers', [])
       phone: ''
     },
     send: function() {
+      this.user.id = 
       StorageService.SET(CTS.USER, this.user);
       $ionicHistory.nextViewOptions({
         disableAnimate: false,
