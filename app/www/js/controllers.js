@@ -56,12 +56,12 @@ angular.module('starter.controllers', [])
     user: StorageService.GET(CTS.USER),
     scan: function funScan() {
       Scan.getQR()
-        .then(function(result) {
-          $scope.scanned = true;
-          $scope.dude = result;
-          console.log('resutl->', result);
-          Utils.showAlert('result', result);
-        })
+      .then(function(result) {
+        $scope.scanned = true;
+        $scope.dude = result;
+        console.log('resutl->', result);
+        Utils.showAlert('result', result);
+      })
     },
     done: function() {
       var dude = $scope.dude;
@@ -72,22 +72,25 @@ angular.module('starter.controllers', [])
 })
 
 .controller('LoginCtrl', function($scope, $state, $ionicHistory, StorageService, CTS) {
-
-  var friends = [{
-    id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'img/ben.png'
-  }, {
-    id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'img/max.png'
-  }];
+  var loadData =  function () {
+  var friends = [
+    {
+      id: 0,
+      name: 'Ben Sparrow',
+      lastText: 'You on your way?',
+      face: 'img/ben.png'
+    }, {
+      id: 1,
+      name: 'Max Lynx',
+      lastText: 'Hey, it\'s me',
+      face: 'img/max.png'
+    }
+  ];
 
   StorageService.SET(CTS.FRIENDS, friends);
 
-  var dudes = [{
+  var dudes = [
+  {
     id: 0,
     name: 'Ben Sparrow',
     face: 'img/ben.png',
@@ -116,9 +119,11 @@ angular.module('starter.controllers', [])
     lastText: 'This is wicked good ice cream.',
     face: 'img/mike.png',
     style: 'desature'
-  }];
+  }
+  ];
 
-  var events = [{
+  var events = [
+  {
     id: 0,
     name: 'AWS Summit 2016',
     lastText: '28/04/2016',
@@ -136,9 +141,11 @@ angular.module('starter.controllers', [])
     lastText: '15/06/2016',
     face: 'img/qcon.jpg',
     dudes: dudes
-  }];
+  }
+  ];
 
   StorageService.SET(CTS.EVENTS, events);
+  }
 
   $scope.view = {
     user: {
@@ -152,9 +159,22 @@ angular.module('starter.controllers', [])
         disableAnimate: false,
         disableBack: true
       });
-      $state.go('tab.events')
+      $state.go('tab.events');
     }
   }
+  $scope.$on('$ionicView.enter', function(e) {
+    var user =  StorageService.GET(CTS.USER);
+    if(user){
+     StorageService.SET(CTS.USER, this.user);
+      $ionicHistory.nextViewOptions({
+        disableAnimate: false,
+        disableBack: true
+      });
+      $state.go('tab.events');
+    }else{
+      loadData();
+    }
+  })
 })
 
 .controller('ProfileCtrl', function($scope, $state) {
