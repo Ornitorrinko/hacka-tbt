@@ -124,18 +124,18 @@ angular.module('starter.services', [])
 
 })
 
-.factory('Scan', function($q) {
+.factory('Scan', function($q,$cordovaBarcodeScanner) {
   var self = this;
 
   self.getQR = function funGetQR() {
     return $q(function(resolve, reject){
-      resolve({
-        id: 0,
-        name: 'Ben Sparrow',
-        lastText: 'You on your way?',
-        face: 'img/ben.png'
+      $cordovaBarcodeScanner.scan()
+      .then(function(barcodeData) {
+        resolve(barcodeData);
+      }, function(error) {
+        reject(error);
       });
-    })
+    });
   }
 
   return self;
