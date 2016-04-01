@@ -1,6 +1,11 @@
 angular.module('starter.controllers', [])
 
 .controller('EventsCtrl', function($scope, Events) {
+
+  $scope.$on('$ionicView.enter', function(e) {
+
+  });
+
   $scope.chats = Events.all();
   $scope.remove = function(event) {
     Events.remove(event);
@@ -31,4 +36,22 @@ angular.module('starter.controllers', [])
   $scope.settings = {
     enableFriends: true
   };
-});
+})
+
+.controller('LoginCtrl', function($scope, $state, $ionicHistory, StorageService) {
+  $scope.view = {
+    user: {
+      name: '',
+      email: '',
+      phone: ''
+    },
+    send: function() {
+      StorageService.SET('USER', this.user);
+      $ionicHistory.nextViewOptions({
+        disableAnimate: false,
+        disableBack: true
+      });
+      $state.go('tab.events')
+    }
+  }
+})

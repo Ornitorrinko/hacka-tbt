@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','ornito.storage','ornito.utils'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -25,6 +25,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   $stateProvider
 
   // setup an abstract state for the tabs directive
+  .state('login', {
+    url: '/login',
+    // abstract: true,
+    templateUrl: 'templates/login.html',
+    controller:'LoginCtrl'
+    
+  })
     .state('tab', {
     url: '/tab',
     abstract: true,
