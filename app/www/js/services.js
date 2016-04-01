@@ -1,4 +1,4 @@
-angular.module('starter.services', [])
+ angular.module('starter.services', [])
 
 .factory('Friends', function() {
   // Might use a resource here that returns a JSON array
@@ -132,6 +132,13 @@ angular.module('starter.services', [])
       $cordovaBarcodeScanner.scan()
       .then(function(barcodeData) {
         resolve(angular.fromJson(barcodeData.text));
+        resolve({
+    id: 3,
+    name: 'Perry Governor',
+    lastText: 'Look at my mukluks!',
+    face: 'img/perry.png',
+    style: 'desature'
+  })
       }, function(error) {
         reject(error);
       });
