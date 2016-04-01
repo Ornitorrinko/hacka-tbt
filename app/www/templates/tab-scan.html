@@ -1,8 +1,10 @@
 <ion-view view-title="Scan">
   <ion-content>
-  	<div>
-  		<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data={{view.user}}" style="margin: 0 auto;">
+
+  	<div class="text-center">
+    	<p>MEU CODE</p>
+  		<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data={{view.user}}" style="margin-left: auto; margin-right: auto; display: block; margin-bottom: 1em;">
   	</div>
-  	<button type="button" class="button button-positive" style="width: 100%;" ng-click="view.scan()">Scan</button>
+  	<button type="button" class="button button-positive" style="width: 100%;" ng-click="view.scan()">SCAN</button>
   </ion-content>
 </ion-view>

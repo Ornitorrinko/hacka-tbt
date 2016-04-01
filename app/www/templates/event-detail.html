@@ -1,0 +1,12 @@
+<ion-view view-title="{{event.name}}">
+  <ion-content class="padding text-center">
+    <p>NETDUDES DO EVENTO</p>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="dude in dudes" type="item-text-wrap">
+        <img ng-src="{{dude.face}}" class="{{dude.style}}">
+        <h2>{{dude.name}}</h2>
+        <i class="icon ion-ios-plus-outline" ng-click="scan(dude.id);"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
