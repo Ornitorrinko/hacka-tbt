@@ -55,3 +55,41 @@ angular.module('starter.controllers', [])
     }
   }
 })
+
+.controller('ProfileCtrl', function($scope, $state) {
+
+  $scope.settingsList = [{
+    text: "Batman Azul",
+    checked: false
+  }, {
+    text: "Batman Preto",
+    checked: true
+  }, {
+    text: "Cinema",
+    checked: true
+  }, {
+    text: "Música",
+    checked: false
+  }, {
+    text: "Tecnologia",
+    checked: false
+  }, {
+    text: "Teatro",
+    checked: false
+  }, {
+    text: "Quadrinhos",
+    checked: false
+  }, {
+    text: "Futebol",
+    checked: false
+  }, {
+    text: "Games",
+    checked: false
+  }, {
+    text: "Mulheres",
+    checked: false
+  }, {
+    text: "Homens",
+    checked: false
+  }];
+})
