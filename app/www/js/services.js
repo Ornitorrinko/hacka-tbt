@@ -1,4 +1,4 @@
-angular.module('starter.services', [])
+ angular.module('starter.services', [])
 
 .factory('Friends', function(StorageService, CTS) {
 
@@ -74,12 +74,19 @@ angular.module('starter.services', [])
 
   self.getQR = function funGetQR() {
     return $q(function(resolve, reject) {
-      $cordovaBarcodeScanner.scan()
-        .then(function(barcodeData) {
-          resolve(angular.fromJson(barcodeData.text));
-        }, function(error) {
-          reject(error);
-        });
+      // $cordovaBarcodeScanner.scan()
+      // .then(function(barcodeData) {
+        // resolve(angular.fromJson(barcodeData.text));
+        resolve({
+    id: 3,
+    name: 'Perry Governor',
+    lastText: 'Look at my mukluks!',
+    face: 'img/perry.png',
+    style: 'desature'
+  // })
+      // }, function(error) {
+      //   reject(error);
+      });
     });
   }
 
