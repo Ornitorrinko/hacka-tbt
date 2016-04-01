@@ -32,21 +32,34 @@ angular.module('starter.controllers', [])
   $scope.chat = Friends.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope) {
+.controller('EventDetailCtrl', function($scope, $stateParams, Events) {
+  $scope.chat = Events.get($stateParams.chatId);
+})
+
+.controller('AccountCtrl', function($scope, StorageService,CTS,Scan) {
   $scope.settings = {
     enableFriends: true
   };
+  $scope.view={
+    user:StorageService.GET(CTS.USER),
+    scan:function funScan() {
+      Scan.getQR()
+      .then(function(result) {
+        console.log('resutl->',result);
+      })
+    }
+  }
 })
 
-.controller('LoginCtrl', function($scope, $state, $ionicHistory, StorageService) {
-  $scope.view = {
-    user: {
-      name: '',
-      email: '',
-      phone: ''
+.controller('LoginCtrl',function ($scope,$state,$ionicHistory, StorageService,CTS) {
+  $scope.view={
+    user : {
+      name:'',
+      email:'',
+      phone:''
     },
-    send: function() {
-      StorageService.SET('USER', this.user);
+    send : function () {
+      StorageService.SET(CTS.USER,this.user);
       $ionicHistory.nextViewOptions({
         disableAnimate: false,
         disableBack: true

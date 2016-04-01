@@ -13,7 +13,7 @@ angular.module('ornito.utils', [])
   }
   self.showAlert = function(title, message) {
     var alertPopup = $ionicPopup.alert({
-      title: title
+      title: title,
       template: message
     });
     alertPopup.then(function(res) {});
