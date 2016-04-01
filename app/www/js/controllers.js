@@ -32,10 +32,6 @@ angular.module('starter.controllers', [])
   $scope.chat = Friends.get($stateParams.chatId);
 })
 
-.controller('EventDetailCtrl', function($scope, $stateParams, Events) {
-  $scope.chat = Events.get($stateParams.chatId);
-})
-
 .controller('ScanCtrl', function($scope, StorageService, CTS, Scan) {
   $scope.settings = {
     enableFriends: true
@@ -64,7 +60,7 @@ angular.module('starter.controllers', [])
           $scope.scanned = true;
           $scope.dude = result;
           console.log('resutl->', result);
-          Utils.showAlert('result',result);    
+          Utils.showAlert('result', result);
         })
     }
   }
@@ -97,28 +93,28 @@ angular.module('starter.controllers', [])
     text: "Batman Preto",
     checked: true
   }, {
-    text: "Cinema",
+    text: "Filmes de Terror",
     checked: true
   }, {
-    text: "Música",
+    text: "Música Eletrônica",
     checked: false
   }, {
-    text: "Tecnologia",
+    text: "IoT",
     checked: false
   }, {
-    text: "Teatro",
+    text: "Tecnologia Móvel",
     checked: false
   }, {
-    text: "Quadrinhos",
+    text: "Cloud Computing",
     checked: false
   }, {
-    text: "Futebol",
+    text: "DC Comics",
     checked: false
   }, {
-    text: "Games",
+    text: "Games Vintage",
     checked: false
   }, {
-    text: "Mulheres",
+    text: "Mulheres Safadas",
     checked: false
   }, {
     text: "Homens",
