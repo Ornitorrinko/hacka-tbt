@@ -36,30 +36,49 @@ angular.module('starter.controllers', [])
   $scope.chat = Events.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope, StorageService,CTS,Scan,Utils) {
+.controller('ScanCtrl', function($scope, StorageService, CTS, Scan) {
   $scope.settings = {
     enableFriends: true
   };
-  $scope.view={
-    user:StorageService.GET(CTS.USER),
-    scan:function funScan() {
+
+  $scope.scanned = false;
+  $scope.dude = {};
+
+  $scope.rating = {
+    min: 0,
+    max: 10,
+    value: 5
+  }
+
+  $scope.ratingDescription = {
+    0: 'Não gostei da conversa',
+    5: 'Boa conversa',
+    10: 'Excelente conversa'
+  }
+
+  $scope.view = {
+    user: StorageService.GET(CTS.USER),
+    scan: function funScan() {
       Scan.getQR()
-      .then(function(result) {
-        Utils.showAlert('result',result);
-      })
+        .then(function(result) {
+          $scope.scanned = true;
+          $scope.dude = result;
+          console.log('resutl->', result);
+          Utils.showAlert('result',result);    
+        })
     }
   }
 })
 
-.controller('LoginCtrl',function ($scope,$state,$ionicHistory, StorageService,CTS) {
-  $scope.view={
-    user : {
-      name:'',
-      email:'',
-      phone:''
+.controller('LoginCtrl', function($scope, $state, $ionicHistory, StorageService, CTS) {
+  $scope.view = {
+    user: {
+      name: '',
+      email: '',
+      phone: ''
     },
-    send : function () {
-      StorageService.SET(CTS.USER,this.user);
+    send: function() {
+      StorageService.SET(CTS.USER, this.user);
       $ionicHistory.nextViewOptions({
         disableAnimate: false,
         disableBack: true
@@ -67,4 +86,42 @@ angular.module('starter.controllers', [])
       $state.go('tab.events')
     }
   }
+})
+
+.controller('ProfileCtrl', function($scope, $state) {
+
+  $scope.settingsList = [{
+    text: "Batman Azul",
+    checked: false
+  }, {
+    text: "Batman Preto",
+    checked: true
+  }, {
+    text: "Cinema",
+    checked: true
+  }, {
+    text: "Música",
+    checked: false
+  }, {
+    text: "Tecnologia",
+    checked: false
+  }, {
+    text: "Teatro",
+    checked: false
+  }, {
+    text: "Quadrinhos",
+    checked: false
+  }, {
+    text: "Futebol",
+    checked: false
+  }, {
+    text: "Games",
+    checked: false
+  }, {
+    text: "Mulheres",
+    checked: false
+  }, {
+    text: "Homens",
+    checked: false
+  }];
 })

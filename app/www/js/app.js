@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','ornito.storage','ornito.utils','constants'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ornito.storage', 'ornito.utils', 'constants'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -25,18 +25,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','o
   $stateProvider
 
   // setup an abstract state for the tabs directive
-  .state('login', {
-    url: '/login',
-    // abstract: true,
-    templateUrl: 'templates/login.html',
-    controller:'LoginCtrl'
+    .state('login', {
+      url: '/login',
+      // abstract: true,
+      templateUrl: 'templates/login.html',
+      controller: 'LoginCtrl'
 
-  })
+    })
     .state('tab', {
-    url: '/tab',
-    abstract: true,
-    templateUrl: 'templates/tabs.html'
-  })
+      url: '/tab',
+      abstract: true,
+      templateUrl: 'templates/tabs.html'
+    })
 
   // Each tab has its own nav history stack:
 
@@ -77,18 +77,27 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','o
         }
       }
     })
+    .state('tab.profile', {
+      url: '/profile',
+      views: {
+        'tab-profile': {
+          templateUrl: 'templates/profile.html',
+          controller: 'ProfileCtrl'
+        }
+      }
+    })
 
   .state('tab.scan', {
     url: '/scan',
     views: {
       'tab-scan': {
         templateUrl: 'templates/tab-scan.html',
-        controller: 'AccountCtrl'
+        controller: 'ScanCtrl'
       }
     }
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/events');
+  $urlRouterProvider.otherwise('/login');
 
 });
