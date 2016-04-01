@@ -36,7 +36,7 @@ angular.module('starter.controllers', [])
   $scope.chat = Events.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope, StorageService,CTS,Scan) {
+.controller('AccountCtrl', function($scope, StorageService,CTS,Scan,Utils) {
   $scope.settings = {
     enableFriends: true
   };
@@ -45,7 +45,7 @@ angular.module('starter.controllers', [])
     scan:function funScan() {
       Scan.getQR()
       .then(function(result) {
-        console.log('resutl->',result);
+        Utils.showAlert('result',result);
       })
     }
   }
