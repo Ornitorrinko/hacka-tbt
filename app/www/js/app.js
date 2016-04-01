@@ -92,7 +92,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     views: {
       'tab-scan': {
         templateUrl: 'templates/tab-scan.html',
-        controller: 'AccountCtrl'
+        controller: 'ScanCtrl'
       }
     }
   });

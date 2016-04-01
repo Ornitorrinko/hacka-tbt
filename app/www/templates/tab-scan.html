@@ -2,8 +2,21 @@
   <ion-content>
   	<div class="text-center">
     	<h4>MEU CODE</h4>
-  		<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=1" style="margin-left: auto; margin-right: auto; display: block; margin-bottom: 1em;">
+  		<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data={{view.user}}" style="margin-left: auto; margin-right: auto; display: block; margin-bottom: 1em;">
   	</div>
   	<button type="button" class="button button-positive" style="width: 100%;" ng-click="view.scan()">SCAN</button>
+	<hr>
+	<div ng-show="scanned" class="text-center">	
+		<h4>{{dude.name}}</h4>
+		<div class="item range">
+			<i class="icon ion-sad-outline"></i>
+				<input type="range" min="0" max="{{rating.max}}" value="{{rating.min}}" step="5" ng-model="rating.value">
+			<i class="icon ion-happy-outline"></i>
+		</div>
+		<br/>
+		<label><b>{{ratingDescription[rating.value]}}</b></label>
+		<button type="button" class="button button-balanced" style="width: 100%; margin-top: 1em;" ng-click="view.scan()">CONCLUIR</button>
+	</div>
+
   </ion-content>
 </ion-view>

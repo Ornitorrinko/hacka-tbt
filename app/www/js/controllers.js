@@ -36,30 +36,48 @@ angular.module('starter.controllers', [])
   $scope.chat = Events.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope, StorageService,CTS,Scan) {
+.controller('ScanCtrl', function($scope, StorageService, CTS, Scan) {
   $scope.settings = {
     enableFriends: true
   };
-  $scope.view={
-    user:StorageService.GET(CTS.USER),
-    scan:function funScan() {
+
+  $scope.scanned = false;
+  $scope.dude = {};
+
+  $scope.rating = {
+    min: 0,
+    max: 10,
+    value: 5
+  }
+
+  $scope.ratingDescription = {
+    0: 'Não gostei da conversa',
+    5: 'Boa conversa',
+    10: 'Excelente conversa'
+  }
+
+  $scope.view = {
+    user: StorageService.GET(CTS.USER),
+    scan: function funScan() {
       Scan.getQR()
-      .then(function(result) {
-        console.log('resutl->',result);
-      })
+        .then(function(result) {
+          $scope.scanned = true;
+          $scope.dude = result;
+          console.log('resutl->', result);
+        })
     }
   }
 })
 
-.controller('LoginCtrl',function ($scope,$state,$ionicHistory, StorageService,CTS) {
-  $scope.view={
-    user : {
-      name:'',
-      email:'',
-      phone:''
+.controller('LoginCtrl', function($scope, $state, $ionicHistory, StorageService, CTS) {
+  $scope.view = {
+    user: {
+      name: '',
+      email: '',
+      phone: ''
     },
-    send : function () {
-      StorageService.SET(CTS.USER,this.user);
+    send: function() {
+      StorageService.SET(CTS.USER, this.user);
       $ionicHistory.nextViewOptions({
         disableAnimate: false,
         disableBack: true
