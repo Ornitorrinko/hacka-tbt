@@ -42,6 +42,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+  .state('tab.events-detail', {
+      url: '/events/:chatId',
+      views: {
+        'tab-events': {
+          templateUrl: 'templates/chat-detail.html',
+          controller: 'EventDetailCtrl'
+        }
+      }
+    })
 
   .state('tab.friends', {
       url: '/friends',
@@ -52,10 +61,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
+    .state('tab.friends-detail', {
+      url: '/friends/:chatId',
       views: {
-        'tab-chats': {
+        'tab-friends': {
           templateUrl: 'templates/chat-detail.html',
           controller: 'ChatDetailCtrl'
         }
