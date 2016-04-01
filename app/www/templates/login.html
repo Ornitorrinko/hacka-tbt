@@ -1,0 +1,21 @@
+<ion-view view-title="Login">
+  <ion-content class="padding">
+    <form ng-submit="view.send()">
+      <label class="item item-input">
+        <span class="input-label" ng-model="view.user.name">Name</span>
+        <input type="text">
+      </label>  
+      <label class="item item-input">
+        <span class="input-label" ng-model="view.user.email">Email</span>
+        <input type="email">
+      </label>
+      <label class="item item-input">
+        <span class="input-label" ng-model="view.user.phone">Telephone</span>
+        <input type="tel">
+      </label>
+      <button type="submit"  class="button button-positive">
+        Entrar
+      </button>
+    </form>
+  </ion-content>
+</ion-view>
