@@ -13,8 +13,11 @@ angular.module('starter.controllers', [])
 })
 
 .controller('EventDetailCtrl', function($scope, $state, $stateParams, Events, Dudes) {
-  $scope.event = Events.get($stateParams.id);
-  $scope.dudes = $scope.event.dudes;
+
+  $scope.$on('$ionicView.enter', function(e) {
+    $scope.event = Events.get($stateParams.id);
+    $scope.dudes = $scope.event.dudes;
+  });
 
   $scope.scan = function(id) {
     $state.go('tab.scan');
@@ -32,7 +35,7 @@ angular.module('starter.controllers', [])
   $scope.chat = Friends.get($stateParams.chatId);
 })
 
-.controller('ScanCtrl', function($scope, StorageService, CTS, Scan, Utils) {
+.controller('ScanCtrl', function($scope, $state, $ionicHistory, StorageService, CTS, Scan, Friends, Utils) {
   $scope.settings = {
     enableFriends: true
   };
@@ -48,8 +51,8 @@ angular.module('starter.controllers', [])
 
   $scope.ratingDescription = {
     0: 'Conversa rápida',
-    5: 'Boa conversa',
-    10: 'Excelente conversa'
+    5: 'Conversa boa',
+    10: 'Conversa excelente'
   }
 
   $scope.view = {
@@ -58,15 +61,23 @@ angular.module('starter.controllers', [])
       Scan.getQR()
         .then(function(result) {
           $scope.scanned = true;
+          console.log(result);
           $scope.dude = result;
-          console.log('resutl->', result);
           Utils.showAlert('result', result);
         })
     },
     done: function() {
       var dude = $scope.dude;
-      Utils.showAlert('Tudo certo!', dude.name + ' foi adicionado ao seus amigos');
+      if (!dude) {
+        return;
+      }
 
+      var event_id = $scope.dude.event_id;
+      Utils.showAlert('Tudo certo!', dude.name + ' foi adicionado ao seus amigos');
+      Friends.add(dude);
+      $state.go('tab.events', {
+        id: event_id
+      });
     }
   }
 })
