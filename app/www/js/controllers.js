@@ -31,7 +31,9 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Friends) {
-  $scope.chat = Friends.get($stateParams.chatId);
+  $scope.$on('$ionicView.enter', function(e) {
+    $scope.chat = Friends.get($stateParams.chatId);
+  })
 })
 
 .controller('ScanCtrl', function($scope, $state, $ionicHistory, StorageService, CTS, Scan, Friends, Utils) {
@@ -80,17 +82,7 @@ angular.module('starter.controllers', [])
 
 .controller('LoginCtrl', function($scope, $state, $ionicHistory, StorageService, CTS) {
   var loadData = function() {
-    var friends = [{
-      id: 0,
-      name: 'Ben Sparrow',
-      lastText: 'You on your way?',
-      face: 'img/ben.png'
-    }, {
-      id: 1,
-      name: 'Max Lynx',
-      lastText: 'Hey, it\'s me',
-      face: 'img/max.png'
-    }];
+    var friends = [];
 
     StorageService.SET(CTS.FRIENDS, friends);
 

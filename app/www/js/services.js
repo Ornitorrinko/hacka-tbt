@@ -30,29 +30,30 @@
        }
 
        friends.push(friend);
+       if(friend.event_id){
 
-       var events = StorageService.GET(CTS.EVENTS);
-       var event_id = friend.event_id;
+         var events = StorageService.GET(CTS.EVENTS);
+         var event_id = friend.event_id;
 
-       var event = events.filter(function(ev) {
-         return ev.id === event_id;
-       })[0];
+         var event = events.filter(function(ev) {
+           return ev.id === event_id;
+         })[0];
 
-       var dude = event.dudes[friend.id];
-       if (dude) {
-         dude.style = '';
-       }
+         var dude = event.dudes[friend.id];
+         if (dude) {
+           dude.style = '';
+         }
 
 
-       events.splice(event.id, 1);
-       event.dudes.splice(dude.id, 1);
+         events.splice(event.id, 1);
+         event.dudes.splice(dude.id, 1);
 
-       event.dudes.splice(dude.id, 0, dude);
-       events.splice(event.id, 0, event);
+         event.dudes.splice(dude.id, 0, dude);
+         events.splice(event.id, 0, event);
 
-       StorageService.SET(CTS.FRIENDS, friends);
-       StorageService.SET(CTS.EVENTS, events);
-
+         StorageService.SET(CTS.FRIENDS, friends);
+         StorageService.SET(CTS.EVENTS, events);
+      }
      }
    };
  })
@@ -107,22 +108,15 @@
 
    self.getQR = function funGetQR() {
      return $q(function(resolve, reject) {
-       // $cordovaBarcodeScanner.scan()
-       // .then(function(barcodeData) {
-       // resolve(angular.fromJson(barcodeData.text));
-       resolve({
-         id: 3,
-         name: 'Perry Governor',
-         lastText: 'Look at my mukluks!',
-         face: 'img/perry.png',
-         style: 'desature',
-         event_id: 0
-           // })
-           // }, function(error) {
-           //   reject(error);
+       $cordovaBarcodeScanner.scan()
+       .then(function(barcodeData) {
+         resolve(angular.fromJson(barcodeData.text));
+       }, function(error) {
+         reject(error);
        });
      });
    }
 
    return self;
- })
+
+   });
