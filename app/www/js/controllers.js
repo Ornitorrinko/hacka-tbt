@@ -3,10 +3,9 @@ angular.module('starter.controllers', [])
 .controller('EventsCtrl', function($scope, Events) {
 
   $scope.$on('$ionicView.enter', function(e) {
-
+    $scope.events = Events.all();
   });
 
-  $scope.events = Events.all();
   $scope.remove = function(event) {
     Events.remove(event);
   };
@@ -61,9 +60,7 @@ angular.module('starter.controllers', [])
       Scan.getQR()
         .then(function(result) {
           $scope.scanned = true;
-          console.log(result);
           $scope.dude = result;
-          Utils.showAlert('result', result);
         })
     },
     done: function() {

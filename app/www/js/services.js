@@ -59,16 +59,17 @@
 
  .factory('Events', function(StorageService, CTS) {
 
-   var events = StorageService.GET(CTS.EVENTS);
 
    return {
      all: function() {
-       return events;
+       return StorageService.GET(CTS.EVENTS);;
      },
      remove: function(ev) {
+       var events = StorageService.GET(CTS.EVENTS);
        events.splice(events.indexOf(ev), 1);
      },
      get: function(id) {
+       var events = StorageService.GET(CTS.EVENTS);
        for (var i = 0; i < events.length; i++) {
          if (events[i].id === parseInt(id)) {
            return events[i];
