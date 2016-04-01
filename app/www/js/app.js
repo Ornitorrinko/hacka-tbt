@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','ornito.storage','ornito.utils'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','ornito.storage','ornito.utils','constants'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -30,7 +30,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','o
     // abstract: true,
     templateUrl: 'templates/login.html',
     controller:'LoginCtrl'
-    
+
   })
     .state('tab', {
     url: '/tab',

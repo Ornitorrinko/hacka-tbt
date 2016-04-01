@@ -87,3 +87,25 @@ angular.module('starter.services', [])
 
 
 })
+
+.factory('Scan', function($q) {
+  var self = this;
+
+  self.getQR = function funGetQR() {
+    return $q(function(resolve, reject){
+      resolve({
+        id: 0,
+        name: 'Ben Sparrow',
+        lastText: 'You on your way?',
+        face: 'img/ben.png'
+      });
+    })
+  }
+
+  return self;
+})      
+
+
+
+
+
