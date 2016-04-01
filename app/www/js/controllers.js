@@ -75,9 +75,8 @@ angular.module('starter.controllers', [])
       var event_id = $scope.dude.event_id;
       Utils.showAlert('Tudo certo!', dude.name + ' foi adicionado ao seus amigos');
       Friends.add(dude);
-      $state.go('tab.events', {
-        id: event_id
-      });
+      $state.go('tab.events-detail',{id:event_id});
+
     }
   }
 })
