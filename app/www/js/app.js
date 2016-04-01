@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.services', 'ornito.storage', 'ornito.utils', 'constants','ng'])
+angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.services', 'ornito.storage', 'ornito.utils', 'constants', 'ng'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -17,6 +17,7 @@ angular.module('starter', ['ionic','ngCordova', 'starter.controllers', 'starter.
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
+
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router

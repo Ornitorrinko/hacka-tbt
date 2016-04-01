@@ -6,7 +6,7 @@ angular.module('starter.controllers', [])
 
   });
 
-  $scope.chats = Events.all();
+  $scope.events = Events.all();
   $scope.remove = function(event) {
     Events.remove(event);
   };
@@ -14,7 +14,7 @@ angular.module('starter.controllers', [])
 
 .controller('EventDetailCtrl', function($scope, $state, $stateParams, Events, Dudes) {
   $scope.event = Events.get($stateParams.id);
-  $scope.dudes = Dudes.all();
+  $scope.dudes = $scope.event.dudes;
 
   $scope.scan = function(id) {
     $state.go('tab.scan');
@@ -32,7 +32,7 @@ angular.module('starter.controllers', [])
   $scope.chat = Friends.get($stateParams.chatId);
 })
 
-.controller('ScanCtrl', function($scope, StorageService, CTS, Scan) {
+.controller('ScanCtrl', function($scope, StorageService, CTS, Scan, Utils) {
   $scope.settings = {
     enableFriends: true
   };
@@ -47,7 +47,7 @@ angular.module('starter.controllers', [])
   }
 
   $scope.ratingDescription = {
-    0: 'Não gostei da conversa',
+    0: 'Conversa rápida',
     5: 'Boa conversa',
     10: 'Excelente conversa'
   }
@@ -62,11 +62,84 @@ angular.module('starter.controllers', [])
           console.log('resutl->', result);
           Utils.showAlert('result', result);
         })
+    },
+    done: function() {
+      var dude = $scope.dude;
+      Utils.showAlert('Tudo certo!', dude.name + ' foi adicionado ao seus amigos');
+
     }
   }
 })
 
 .controller('LoginCtrl', function($scope, $state, $ionicHistory, StorageService, CTS) {
+
+  var friends = [{
+    id: 0,
+    name: 'Ben Sparrow',
+    lastText: 'You on your way?',
+    face: 'img/ben.png'
+  }, {
+    id: 1,
+    name: 'Max Lynx',
+    lastText: 'Hey, it\'s me',
+    face: 'img/max.png'
+  }];
+
+  StorageService.SET(CTS.FRIENDS, friends);
+
+  var dudes = [{
+    id: 0,
+    name: 'Ben Sparrow',
+    face: 'img/ben.png',
+    style: 'desature'
+  }, {
+    id: 1,
+    name: 'Max Lynx',
+    lastText: 'Hey, it\'s me',
+    face: 'img/max.png',
+    style: 'desature'
+  }, {
+    id: 2,
+    name: 'Adam Bradleyson',
+    lastText: 'I should buy a boat',
+    face: 'img/adam.jpg',
+    style: 'desature'
+  }, {
+    id: 3,
+    name: 'Perry Governor',
+    lastText: 'Look at my mukluks!',
+    face: 'img/perry.png',
+    style: 'desature'
+  }, {
+    id: 4,
+    name: 'Mike Harrington',
+    lastText: 'This is wicked good ice cream.',
+    face: 'img/mike.png',
+    style: 'desature'
+  }];
+
+  var events = [{
+    id: 0,
+    name: 'AWS Summit 2016',
+    lastText: '28/04/2016',
+    face: 'img/aws.png',
+    dudes: dudes
+  }, {
+    id: 1,
+    name: 'HSM Expo 2016',
+    lastText: '25/05/2016',
+    face: 'img/hsm.png',
+    dudes: dudes
+  }, {
+    id: 2,
+    name: 'Qcon SP 2016',
+    lastText: '15/06/2016',
+    face: 'img/qcon.jpg',
+    dudes: dudes
+  }];
+
+  StorageService.SET(CTS.EVENTS, events);
+
   $scope.view = {
     user: {
       name: '',
